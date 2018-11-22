@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<title>NOTÍCIAS !</title>
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
+	<link rel="stylesheet" href="css/style.css"/>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+  		 $.get("https://query.yahooapis.com/v1/public/yql",{
+  	        q:"select * from weather.forecast where woeid=455827 and u='c'",
+  	        format:"json"
+  	    },function (res) {
+  	        if(res){
+  	            var umidade = res.query.results.channel.atmosphere.humidity + " %";
+  	            var temperatura = res.query.results.channel.item.condition.temp + " °C";
+  	            var pressao = res.query.results.channel.atmosphere.pressure + " mb";
+  	            var data = res.query.results.channel.item.condition.date;
+  	            var cidade = res.query.results.channel.location.city;
+  	            	
+  	           // $("#idTemp").val(temperatura);
+  	        }
+  	    },'json');  
+	
+	}); // fim do script 
+	</script>
+	
+   
+	
+</head>
+<body>
+
+	<header class="header-marcador">
+		<h1><strong>... Notícias da Última Hora ...</strong></h1>
+	</header>
+	<div class="container-fluid marcador1">
+		<div class="row">
+			<div class="col-md-4 marcador2">
+				<iframe scrolling="no" frameborder="2" marginwidth="0" marginheight="0" 
+				style="margin:5;padding:2;border:0;" width="420" height="315" 
+				src="https://www.climatempo.com.br/tempo-no-seu-site/videos/selo/sudeste/420x315">
+				</iframe>
+				
+			</div>
+			<div class="col-md-8 marcador3">
+						<h2>$.res.query.results.channel.location.city</h2>
+			</div>
+		</div>
+		 
+		
+	</div>
+	
+</body>
+</html>
